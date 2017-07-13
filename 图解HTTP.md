@@ -18,6 +18,7 @@
 ### 链路层
 链接整个网络的硬件设备：操作系统、硬件驱动、网络适配器、传输介质、路由交换设备等
 ![4层的连接图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/sicengjiexi.png)
+![4层的连接图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/sicengchuanshu.png)
 
 #### 通信传输流程
 发送方：发送http报文->传输层（TCP协议）分割消息，加上记号和端口号->网络层（IP协议）增加通讯目的地的MAC地址等->链路层（硬件介质）依赖物理介质传输封装好的http消息。每通过一层都会增加该层的首部
@@ -34,7 +35,8 @@ MAC地址是网卡出厂就被固定了，在未修改前是唯一的
 
 IP间的通讯依赖于MAC地址，ARP协议可以通过通讯方的MAC地址查到对应的IP地址（网吧常见的ARP攻击）
 
-配图：数据发送经过的节点图
+![数据发送经过的节点图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/shujufasong.png)
+
 
 #### TCP
 TCP位于传输层，提供可靠的字节流服务。为了方便传输，将大块数据分割成以报文段为单位的数据包进行管理
@@ -46,7 +48,7 @@ TCP的可靠是能把数据准确可靠的传输给对方。
 最后发送端再回传一个带ACK标志的数据包，代表握手成功，请求结束
 若在握手中的某个阶段发生莫名中断，TCP协议会再次以相同的顺序重新发送相同的数据包
 除了三次握手，TCP还有其他的手段来保证通讯的可靠性，四次挥手等
-配图：三次握手图
+![三次握手图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/sanciwoshou.png)
 
 #### DNS
 DNS和HTTP一样位于应用层，提供域名->IP地址之间的解析服务
@@ -55,17 +57,17 @@ DNS和HTTP一样位于应用层，提供域名->IP地址之间的解析服务
 因为域名和主机名相比IP地址的一堆数字来说更容易人类的记忆，也相对更好理解
 为了解决上述问题，DNS服务应运而生
 DNS通过IP地址解析域名或域名解析IP地址
-配图：DNS解析图
+![DNS解析图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/dnsjiexi.png)
 
 
 ### 各种协议与HTTP协议的关系
 请求一个域名数据->DNS解析域名
 拿着真实IP吧啦吧啦
-配图：各种协议与HTTP协议的关系图
+![各种协议与HTTP协议的关系图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/httpguanxi.png)
 
 ### URL（统一资源定位符）与URI（统一资源标识符）
-URL是web浏览器等访问web页面时需要输入的网页地址（www.jiehun.com.cn)
-URI是用来标识某一互联网资源，定义了uniform（http:,ftp:,https:)，resource(文字文档，图片文件，各种资源)，identifier（表示可标识的对象，也称标识符）。就是由某个协议方案表示的资源的定位标识符(http://www.jiehun.com.cn)
+URL是web浏览器等访问web页面时需要输入的网页地址（www.github.com)
+URI是用来标识某一互联网资源，定义了uniform（http:,ftp:,https:)，resource(文字文档，图片文件，各种资源)，identifier（表示可标识的对象，也称标识符）。就是由某个协议方案表示的资源的定位标识符(http://www.github.com)
 URL是URI的子集
 
 
@@ -95,7 +97,7 @@ HTTP协议自身不对请求和响应之间的通信状态进行保存
 这是为了更快的处理大量事物。
 至少目前HTTP1.1是无状态的
 为了实现保持用户状态的功能，引入了会话机制（cookie管理用户状态）
-配图：无状态示例图
+![无状态示例图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/wuzhuangtai.png)
 
 ### HTTP可使用的方法
 
@@ -111,11 +113,11 @@ CONNECT:要求用隧道协议链接代理
 
 ### 持久链接节省通信量
 HTTP协议的初始版本中，每进行一次通信就要断开一次TCP链接
-配图：建立-断开TCP连接图
+![建立-断开TCP连接图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/jianliheduankai.png)
 
 同一个页面包含多个静态资源的时候，就会浪费很多没必要的资源去链接和断开链接
 HTTP/1.1 和一部分的HTTP/1.0有了keep-alive，只要任意一端没有明确提出断开链接，则保持TCP链接状态。类似打包
-配图：keepalive
+![keepalive](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/keepalive.png)
 
 持久链接减少了TCP链接的重复建立，断开链接所造成的额外开销
 HTTP/1.1中，默认所有链接都是持久链接
@@ -123,13 +125,12 @@ HTTP/1.1中，默认所有链接都是持久链接
 并行发送多个请求，不需要一个接一个的等待响应(浏览器不同)
 
 
-
 ## HTTP请求报文
 请求端的HTTP报文叫做请求报文
 响应端的HTTP报文叫做响应报文
 
 报文一般分为两部分，报文首部，空行，报文主题（不一定有）
-配图：报文结构组成配图
+![报文结构组成配图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/baowenjiegou.png)
 
 HTTP请求头中的range
 
@@ -142,7 +143,7 @@ HTTP1.1规范了47种首部字段，非HTTP1.1正式规范的字段也有很多�
 
 
 ### HTTP的瓶颈
-配图：
+![http瓶颈](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/httppingjing.png)
 
 ### 服务器推和主动轮询
 服务器推：长时间的占用链接不能释放
@@ -160,10 +161,15 @@ web浏览器与web服务器之间，全双工通信标准
 支持服务器推送，不必等待客户端请求
 建立通信以后就一直保持着连接状态，减少了开销
 为了实现websocket通信，在http连接建立之后，需要完成一次握手
-websocket握手配图：
+
+
+![websocket握手配图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/websocketwoshou.png)
 成功握手确立websocket连接，通信不再使用http的数据帧
-websocekt通信配图：
+
+![websocekt通信配图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/websockettongxin.png)
+![websocket响应](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/websocketxiangying.png)
 JS可以使用websocket的API
+
 
 
 ## HTTP2.0
