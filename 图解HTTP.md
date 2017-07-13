@@ -17,7 +17,7 @@
 
 ### 链路层
 链接整个网络的硬件设备：操作系统、硬件驱动、网络适配器、传输介质、路由交换设备等
-![](){4层的连接图}{https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/sicengjiexi.png}
+![4层的连接图](https://raw.githubusercontent.com/codesway/static/master/%E5%9B%BE%E8%A7%A3HTTP/sicengjiexi.png)
 
 #### 通信传输流程
 发送方：发送http报文->传输层（TCP协议）分割消息，加上记号和端口号->网络层（IP协议）增加通讯目的地的MAC地址等->链路层（硬件介质）依赖物理介质传输封装好的http消息。每通过一层都会增加该层的首部
